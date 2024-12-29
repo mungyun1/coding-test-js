@@ -1,13 +1,5 @@
-function solution(numbers) {
-  const result = new Array(numbers.length).fill(-1);
-  const stack = [];
+function solution1(queue1, queue2) {
+  const totalSum = [...queue1, ...queue2].reduce((a, b) => a + b, 0);
 
-  for (let i = 0; i < numbers.length; i++) {
-    while (stack.length > 0 && numbers[stack[stack.length - 1]] < numbers[i]) {
-      const index = stack.pop();
-      result[index] = numbers[i];
-    }
-    stack.push(i);
-  }
-  return result;
+  if (totalSum % 2 !== 0) return -1;
 }
