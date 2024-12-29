@@ -73,13 +73,6 @@ const a = {
 
 console.log("two" in a); // true
 
-// 문자열 안에 요소가 존재하는지 검사
-
-const str12 = "43 + 12";
-const hasPlus = str12.includes("+");
-
-console.log(hasPlus); // true
-
 // 소수 판별 함수
 
 function isPrime(num) {
@@ -112,6 +105,6 @@ function factorial(num) {
 
 const sumEx = [1, 2, 3, 4, 5];
 
-const sum = arr.reduce((sumEx, current) => sumEx + current, 0);
+const sum = sumEx.reduce((a, b) => a + b, 0);
 
 console.log(sum); // 15
