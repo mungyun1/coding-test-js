@@ -20,28 +20,4 @@ while (n > 0) {
   n--;
 }
 
-// 이친수(https://www.acmicpc.net/problem/2193)
-
-function solution1(N) {
-  // dp 배열 초기화
-  const dp = Array(N + 1).fill(0);
-
-  // 초기값 설정
-  dp[1] = 1;
-  dp[2] = 1;
-
-  // DP 점화식 적용
-  for (let i = 3; i <= N; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2];
-  }
-
-  // N자리 이친수 개수 반환
-  return dp[N];
-}
-
-// 입력 처리
-const fs = require("fs");
-const input = parseInt(fs.readFileSync("/dev/stdin").toString().trim(), 10);
-
-// 결과 출력
-console.log(solution1(input));
+// 이친수(https://www.acmicpc.net/problem/2193) - 풀어야함
