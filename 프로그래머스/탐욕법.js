@@ -24,3 +24,31 @@ function solution1(people, limit) {
 
   return boatCount;
 }
+
+// 큰 수 만들기(https://school.programmers.co.kr/learn/courses/30/lessons/42883)
+
+function solution(number, k) {
+  const stack = [];
+  let removeCount = 0;
+
+  for (const digit of number) {
+    // 스택에서 숫자를 제거할 조건: 제거 가능 횟수가 남아있고, 스택의 마지막 숫자가 현재 숫자보다 작음
+    while (
+      stack.length > 0 &&
+      removeCount < k &&
+      stack[stack.length - 1] < digit
+    ) {
+      stack.pop();
+      removeCount++;
+    }
+    stack.push(digit);
+  }
+
+  // 제거해야 할 숫자가 남아 있는 경우 뒤에서 자름
+  while (removeCount < k) {
+    stack.pop();
+    removeCount++;
+  }
+
+  return stack.join(""); // 스택을 문자열로 합쳐 반환
+}

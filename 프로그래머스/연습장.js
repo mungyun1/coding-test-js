@@ -1,15 +1,16 @@
-function bfs(graph, start, visited = new Set()) {
-  const queue = [start];
-  visited.add(start);
+function fibo(n) {
+  let prev = 0;
+  let curr = 1;
 
-  while (queue.length > 0) {
-    const node = queue.shift();
-
-    for (const i of graph[node]) {
-      if (!visited.has(i)) {
-        visited.add(i);
-        queue.push(i);
-      }
-    }
+  for (let i = 2; i <= n; i++) {
+    let next = prev + curr;
+    prev = curr;
+    curr = next;
   }
+  return curr;
 }
+
+const fs = require("fs");
+const input = fs.readFileSync("/dev/stdin").toString().trim();
+
+console.log(solution(parseInt(input, 10)));
