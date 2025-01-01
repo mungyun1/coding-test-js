@@ -15,12 +15,12 @@ function solution1(n, vertex) {
 
   // BFS 탐색
   while (queue.length > 0) {
-    const current = queue.shift();
-    for (const neighbor of graph[current]) {
-      if (dist[neighbor] === -1) {
+    const curr = queue.shift();
+    for (const i of graph[curr]) {
+      if (dist[i] === -1) {
         // 아직 방문하지 않은 경우
-        dist[neighbor] = dist[current] + 1;
-        queue.push(neighbor);
+        dist[i] = dist[curr] + 1;
+        queue.push(i);
       }
     }
   }
