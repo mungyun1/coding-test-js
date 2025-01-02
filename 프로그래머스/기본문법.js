@@ -1,3 +1,14 @@
+// Object.keys() 사용
+
+const obj = {
+  name: "Leo",
+  age: 30,
+  city: "Seoul",
+};
+
+const keys = Object.keys(obj);
+console.log(keys); // ['name', 'age', 'city']
+
 // 두번째 요소로 정렬
 
 const a2 = [
