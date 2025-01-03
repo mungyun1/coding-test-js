@@ -1,3 +1,42 @@
+// 섬 연결하기(https://school.programmers.co.kr/learn/courses/30/lessons/42861) - 크루스칼 알고리즘
+
+function solution(n, costs) {
+  // 비용 기준으로 정렬
+  costs.sort((a, b) => a[2] - b[2]);
+
+  // 부모 배열 초기화
+  const parent = Array.from({ length: n }, (_, i) => i); // [0,1,2,3 ..]
+
+  // Find 함수: 경로 압축
+  function find(x) {
+    if (parent[x] !== x) {
+      parent[x] = find(parent[x]); //재귀함수 호출
+    }
+    return parent[x];
+  }
+
+  // Union 함수
+  function union(x, y) {
+    const rootX = find(x);
+    const rootY = find(y);
+    if (rootX !== rootY) {
+      parent[rootY] = rootX;
+    }
+  }
+
+  let totalCost = 0;
+
+  for (const [a, b, cost] of costs) {
+    // 두 섬이 연결되어 있지 않으면 연결
+    if (find(a) !== find(b)) {
+      union(a, b);
+      totalCost += cost;
+    }
+  }
+
+  return totalCost;
+}
+
 // 구명 보트(https://school.programmers.co.kr/learn/courses/30/lessons/42885)
 
 function solution1(people, limit) {

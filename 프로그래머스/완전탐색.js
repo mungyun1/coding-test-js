@@ -4,14 +4,14 @@ function solution(numbers) {
   const permutations = new Set(); // 중복 제거를 위한 Set
 
   // 순열 생성 함수
-  function Permutations(current, remaining) {
-    if (current.length > 0) {
-      permutations.add(parseInt(current)); // 숫자로 변환 후 Set에 추가
+  function permutations(curr, remaining) {
+    if (curr.length > 0) {
+      permutations.add(parseInt(curr)); // 숫자로 변환 후 Set에 추가
     }
 
     for (let i = 0; i < remaining.length; i++) {
-      Permutations(
-        current + remaining[i],
+      permutations(
+        curr + remaining[i],
         remaining.slice(0, i) + remaining.slice(i + 1)
       );
     }
@@ -27,7 +27,7 @@ function solution(numbers) {
   }
 
   // 모든 순열 생성 시작
-  Permutations("", numbers);
+  permutations("", numbers);
 
   // 소수 개수 카운팅
   let count = 0;

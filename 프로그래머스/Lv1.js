@@ -25,3 +25,18 @@ function solution2(numbers) {
 
   return Array.from(sum).sort((a, b) => a - b); // Set을 배열로 변환 후 정렬
 }
+
+//문자열 내 마음대로 정렬하기(https://school.programmers.co.kr/learn/courses/30/lessons/12915)
+//localeCompare: 문자열을 비교하여 사전순으로 정렬
+
+function solution(strings, n) {
+  return strings.sort((a, b) => {
+    // n번째 문자를 기준으로 정렬
+    if (a[n] === b[n]) {
+      // n번째 문자가 같으면 사전순으로 정렬
+      return a.localeCompare(b);
+    }
+    // n번째 문자를 기준으로 정렬
+    return a[n].localeCompare(b[n]);
+  });
+}

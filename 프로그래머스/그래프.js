@@ -69,3 +69,43 @@ function solution(n, results) {
 
   return answer;
 }
+
+// 플로이드-워셜 알고리즘 예시 코드
+
+function floydWarshall(graph) {
+  const V = graph.length;
+  const dist = Array.from({ length: V }, (_, i) => [...graph[i]]); // 거리 배열 초기화
+
+  // 플로이드-워셜 알고리즘
+  for (let k = 0; k < V; k++) {
+    // 경유 노드
+    for (let i = 0; i < V; i++) {
+      // 출발 노드
+      for (let j = 0; j < V; j++) {
+        // 도착 노드
+        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+      }
+    }
+  }
+
+  // 결과 반환
+  return dist;
+}
+
+// 무한대를 나타내는 값
+const INF = Infinity;
+
+// 그래프 초기화 (인접 행렬)
+const graph = [
+  [0, 3, INF, INF],
+  [2, 0, INF, INF],
+  [INF, 7, 0, 1],
+  [6, INF, INF, 0],
+];
+
+// 실행
+const result = floydWarshall(graph);
+
+// 결과 출력
+console.log("최단 거리 행렬:");
+result.forEach((row) => console.log(row));

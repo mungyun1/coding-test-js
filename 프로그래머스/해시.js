@@ -7,7 +7,7 @@ function solution(nums) {
   return arr.length > max ? max : arr.length;
 }
 
-// 전화번호 목록
+// 전화번호 목록(https://school.programmers.co.kr/learn/courses/30/lessons/42577)
 
 function solution(phone_book) {
   // 전화번호부 정렬
@@ -23,5 +23,4 @@ function solution(phone_book) {
 
   return true; // 접두어 관계가 없으면 true 반환
 }
-
 // 참고: 접미사는 endsWith로 boolean을 반환
