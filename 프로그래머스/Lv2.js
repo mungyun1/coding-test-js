@@ -1,3 +1,61 @@
+// 귤 고르기(https://school.programmers.co.kr/learn/courses/30/lessons/138476)
+
+function solution(k, tangerine) {
+  var answer = 0;
+  var temp = {};
+
+  // tangerine 배열을 통해 temp 객체 구성
+  for (let i of tangerine) {
+    if (i in temp) {
+      temp[i] += 1;
+    } else {
+      temp[i] = 1;
+    }
+  }
+
+  // temp를 값으로 정렬하여 배열로 유지
+  const sortedTemp = Object.entries(temp).sort((a, b) => b[1] - a[1]); // 값 기준 내림차순 정렬
+
+  for (let i of sortedTemp) {
+    k -= i[1];
+    answer++;
+    if (k <= 0) {
+      break;
+    }
+  }
+
+  return answer;
+}
+
+// k진수에서 소수 개수 구하기(https://school.programmers.co.kr/learn/courses/30/lessons/92335)
+
+function solution(n, k) {
+  // n을 k진법으로 변환
+  const converted = n.toString(k);
+
+  // 소수 판별 함수
+  function isPrime(num) {
+    if (num < 2) return false;
+    for (let i = 2; i * i <= num; i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  }
+
+  // '0'으로 분리하여 각 숫자를 소수인지 확인
+  const parts = converted.split("0").filter((part) => part !== "");
+  let count = 0;
+
+  for (const part of parts) {
+    const number = parseInt(part, 10);
+    if (isPrime(number)) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
 // 피보나치 수(https://school.programmers.co.kr/learn/courses/30/lessons/12945)
 
 function solution1(n) {

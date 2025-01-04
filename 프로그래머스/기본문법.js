@@ -1,3 +1,13 @@
+// 객체 정렬
+
+const obj1 = { 1: 1, 2: 2, 3: 2, 4: 1, 5: 2 };
+
+// 객체를 [키, 값] 쌍의 배열로 변환
+const sortedEntries = Object.entries(obj1).sort((a, b) => a[1] - b[1]);
+
+// 정렬된 배열을 다시 객체로 변환
+const sortedObj = Object.fromEntries(sortedEntries);
+
 // Object.keys() 사용
 
 const obj = {
