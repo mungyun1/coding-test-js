@@ -1,3 +1,24 @@
+// 124나라의 숫자(https://school.programmers.co.kr/learn/courses/30/lessons/12899)
+
+function solution(n) {
+  let result = "";
+
+  while (n > 0) {
+    let remainder = n % 3;
+
+    // 나머지가 0인 경우
+    if (remainder === 0) {
+      result = "4" + result; // '4' 추가
+      n = Math.floor(n / 3) - 1; // 몫에서 1 감소
+    } else {
+      result = remainder + result; // 나머지 추가
+      n = Math.floor(n / 3); // 몫만 계산
+    }
+  }
+
+  return result;
+}
+
 // 귤 고르기(https://school.programmers.co.kr/learn/courses/30/lessons/138476)
 
 function solution(k, tangerine) {
