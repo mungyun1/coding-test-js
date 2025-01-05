@@ -1,3 +1,25 @@
+// 의상(https://school.programmers.co.kr/learn/courses/30/lessons/42578)
+
+function solution(clothes) {
+  const clothingMap = {};
+
+  // 1. 의상 종류별로 개수 저장
+  for (let [item, category] of clothes) {
+    if (!clothingMap[category]) {
+      clothingMap[category] = 0;
+    }
+    clothingMap[category]++;
+  }
+
+  // 2. 각 종류의 (개수 + 1)을 곱하고 -1
+  let combinations = 1;
+  for (let count of Object.values(clothingMap)) {
+    combinations *= count + 1;
+  }
+
+  return combinations - 1; // 아무 것도 입지 않는 경우 제외
+}
+
 // 배스트 앨범(https://school.programmers.co.kr/learn/courses/30/lessons/42579?language=javascript)
 
 function solution12(genres, plays) {
