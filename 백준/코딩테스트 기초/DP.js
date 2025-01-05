@@ -1,3 +1,28 @@
+//쉬운 계단 수(https://www.acmicpc.net/problem/10844)
+
+function solution(N) {
+  const MOD = 1000000000;
+  const dp = Array.from({ length: N + 1 }, () => Array(10).fill(0));
+
+  // 초기값: 길이 1에서 마지막 자리가 1~9인 경우
+  for (let j = 1; j <= 9; j++) {
+    dp[1][j] = 1;
+  }
+
+  // DP 점화식 적용
+  for (let i = 2; i <= N; i++) {
+    for (let j = 0; j <= 9; j++) {
+      if (j > 0) dp[i][j] += dp[i - 1][j - 1];
+      if (j < 9) dp[i][j] += dp[i - 1][j + 1];
+      dp[i][j] %= MOD;
+    }
+  }
+
+  // 결과 계산
+  const result = dp[N].reduce((sum, count) => (sum + count) % MOD, 0);
+  return result;
+}
+
 // RGB 거리(https://www.acmicpc.net/problem/1149)
 
 function rgbStreet(n, costs) {
@@ -60,8 +85,6 @@ const n = Number(input1[0]);
 const arr1 = input1[1].split(" ").map(Number);
 
 console.log(solution(arr1));
-
-// 이친수(https://www.acmicpc.net/problem/2193) - 풀어야함
 
 //오르막 수(https://www.acmicpc.net/problem/11057)
 

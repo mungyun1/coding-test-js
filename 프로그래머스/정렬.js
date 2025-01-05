@@ -1,3 +1,25 @@
+// H-Index(https://school.programmers.co.kr/learn/courses/30/lessons/42747?language=javascript)
+
+function solution(citations) {
+  // 논문의 인용 횟수를 내림차순으로 정렬
+  citations.sort((a, b) => b - a);
+
+  // h-Index 찾기
+  let h = 0;
+  for (let i = 0; i < citations.length; i++) {
+    if (citations[i] >= i + 1) {
+      h = i + 1;
+    } else {
+      break;
+    }
+  }
+
+  return h;
+}
+
+// 예제 실행
+console.log(solution([3, 0, 6, 1, 5])); // 출력: 3
+
 //가장 큰 수(https://school.programmers.co.kr/learn/courses/30/lessons/42746)
 
 function solution(numbers) {

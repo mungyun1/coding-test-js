@@ -1,3 +1,9 @@
+// 중복된 숫자 개수(https://school.programmers.co.kr/learn/courses/30/lessons/120583)
+
+function solution(array, n) {
+  return array.filter((num) => num === n).length;
+}
+
 // 할 일 목록(https://school.programmers.co.kr/learn/courses/30/lessons/181885)
 
 function solution4(todo_list, finished) {
@@ -34,10 +40,6 @@ function solution7(my_string) {
   // 문자열을 거꾸로 뒤집어서 반환
   return my_string.split("").reverse().join("");
 }
-
-// 예제 테스트
-console.log(solution7("jaron")); // "noraj"
-console.log(solution7("bread")); // "daerb"
 
 // 7의 개수
 

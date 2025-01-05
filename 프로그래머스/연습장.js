@@ -1,27 +1,35 @@
-function solution(k, tangerine) {
-  var answer = 0;
-  var temp = {};
+function solution(answers) {
+  let num1 = [1, 2, 3, 4, 5];
+  let num2 = [2, 1, 2, 3, 2, 4, 2, 5];
+  let num3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
 
-  // tangerine 배열을 통해 temp 객체 구성
-  for (let i of tangerine) {
-    if (i in temp) {
-      temp[i] += 1;
-    } else {
-      temp[i] = 1;
+  let cnt1 = 0;
+  let cnt2 = 0;
+  let cnt3 = 0;
+
+  for (let i = 0; i < answers.length; i++) {
+    if (answers[i] === num1[i % num1.length]) {
+      cnt1++;
+    }
+    if (answers[i] === num2[i % num2.length]) {
+      cnt2++;
+    }
+    if (answers[i] === num3[i % num3.length]) {
+      cnt3++;
     }
   }
 
-  // temp를 값으로 정렬하여 배열로 유지
-  const sortedTemp = Object.entries(temp).sort((a, b) => b[1] - a[1]); // 값 기준 내림차순 정렬
+  const maxNum = Math.max(cnt1, cnt2, cnt3);
+  console.log(maxNum);
 
-  for (let i of sortedTemp) {
-    k -= i[1];
-    answer++;
-    if (k <= 0) {
-      break;
+  const indices = [];
+
+  [cnt1, cnt2, cnt3].forEach((value, index) => {
+    if (value === maxNum) {
+      indices.push(index + 1);
     }
-  }
+  });
 
-  return answer;
+  return indices;
 }
-console.log(solution(3, [1, 3, 2, 3, 2, 4, 1, 1, 2, 2]));
+console.log(solution([1, 3, 2, 4, 2]));

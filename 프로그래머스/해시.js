@@ -1,3 +1,41 @@
+// 배스트 앨범(https://school.programmers.co.kr/learn/courses/30/lessons/42579?language=javascript)
+
+function solution12(genres, plays) {
+  // 1. 곡 정보를 배열로 저장
+  const songs = [];
+  for (let i = 0; i < plays.length; i++) {
+    songs.push([genres[i], plays[i], i]); // [장르, 재생 수, 고유 번호]
+  }
+
+  // 2. 장르별로 곡 정보 저장
+  const genreMap = {};
+  for (let [genre, play, id] of songs) {
+    if (!genreMap[genre]) {
+      genreMap[genre] = [];
+    }
+    genreMap[genre].push([play, id]);
+  }
+
+  // 3. 장르별 총 재생 수 계산 및 정렬
+  const genreOrder = Object.entries(genreMap).map(([genre, songList]) => {
+    const totalPlays = songList.reduce((sum, [play]) => sum + play, 0);
+    return [genre, totalPlays];
+  });
+  genreOrder.sort((a, b) => b[1] - a[1]); // 재생 수 내림차순 정렬
+
+  // 4. 장르 내 곡 정렬 및 최대 두 곡 선택
+  const result = [];
+  for (let [genre] of genreOrder) {
+    const songsInGenre = genreMap[genre];
+    songsInGenre.sort((a, b) => b[0] - a[0] || a[1] - b[1]); // 재생 수 내림차순, 고유 번호 오름차순
+    for (let i = 0; i < Math.min(2, songsInGenre.length); i++) {
+      result.push(songsInGenre[i][1]); // 고유 번호 추가
+    }
+  }
+
+  return result;
+}
+
 //폰켓몬(https://school.programmers.co.kr/learn/courses/30/lessons/1845)
 
 function solution(nums) {
