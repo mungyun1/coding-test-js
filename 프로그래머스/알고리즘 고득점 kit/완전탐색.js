@@ -1,3 +1,33 @@
+// 카펫(https://school.programmers.co.kr/learn/courses/30/lessons/42842)
+
+function find(n) {
+  const arr = [];
+  for (let i = 1; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      arr.push([i, n / i]); // 세로(i), 가로(n / i)
+    }
+  }
+  return arr;
+}
+
+function solution(brown, yellow) {
+  const total = brown + yellow;
+  const candidates = find(total);
+
+  for (const [h, w] of candidates) {
+    if (w >= h) {
+      // 가로 >= 세로 조건 확인
+      const border = 2 * (w + h - 2); // 테두리(갈색 격자) 계산
+      const center = (w - 2) * (h - 2); // 중앙(노란색 격자) 계산
+      if (border === brown && center === yellow) {
+        return [w, h];
+      }
+    }
+  }
+
+  return [];
+}
+
 // 최소직사각형(https://school.programmers.co.kr/learn/courses/30/lessons/86491)
 function solution(sizes) {
   // 각 명함을 [긴 변, 짧은 변] 형태로 정렬
