@@ -1,3 +1,13 @@
+// Map 기본 문법
+
+let map = new Map();
+map.set(key, value); // 값 추가
+let value = map.get(key); // 값 조회
+map.has(key); // 키가 존재하는지 확인
+map.delete(key); // 값 삭제
+map.clear(); // 모든 값 삭제
+let size = map.size; // 크기 확인
+
 // 객체 정렬
 
 const obj1 = { 1: 1, 2: 2, 3: 2, 4: 1, 5: 2 };

@@ -1,5 +1,6 @@
 // 여행 경로(https://school.programmers.co.kr/learn/courses/30/lessons/43164)
 function solution(tickets) {
+  //tickets: [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]
   const graph = {}; // 그래프 생성
 
   // 그래프 초기화 및 정렬
@@ -53,6 +54,7 @@ dfs(graph, 1);
 //타겟넘버(https://school.programmers.co.kr/learn/courses/30/lessons/43165)
 
 function solution(numbers, target) {
+  // numbers: [1, 1, 1, 1, 1], target: 3
   let answer = 0;
 
   function dfs(index, sum) {

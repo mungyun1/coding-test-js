@@ -8,10 +8,10 @@ function solution(x, y, n) {
   visited.add(x);
 
   while (queue.length > 0) {
-    const [current, count] = queue.shift();
+    const [curr, count] = queue.shift();
 
     // 가능한 연산
-    const nextValues = [current + n, current * 2, current * 3];
+    const nextValues = [curr + n, curr * 2, curr * 3];
 
     for (const next of nextValues) {
       if (next === y) return count + 1; // 목표 값에 도달하면 연산 횟수 반환

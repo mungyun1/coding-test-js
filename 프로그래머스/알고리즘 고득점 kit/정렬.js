@@ -17,9 +17,6 @@ function solution(citations) {
   return h;
 }
 
-// 예제 실행
-console.log(solution([3, 0, 6, 1, 5])); // 출력: 3
-
 //가장 큰 수(https://school.programmers.co.kr/learn/courses/30/lessons/42746)
 
 function solution(numbers) {

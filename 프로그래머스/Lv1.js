@@ -1,3 +1,32 @@
+// 기사단원의 무기(https://school.programmers.co.kr/learn/courses/30/lessons/136798)
+
+function solution(number, limit, power) {
+  let totalPower = 0;
+
+  // 1부터 number까지 각 수의 약수 개수 계산
+  for (let i = 1; i <= number; i++) {
+    let divisorsCount = 0;
+
+    // i의 약수 개수 구하기
+    for (let j = 1; j <= Math.sqrt(i); j++) {
+      if (i % j === 0) {
+        divisorsCount++;
+        if (i / j !== j) divisorsCount++; // 약수 쌍을 고려
+        // i = 36일 때 j = 2라면, i / j = 18이므로 2와 18은 서로 다른 두 약수
+      }
+    }
+
+    // 약수 개수가 limit을 초과하면 power로 설정
+    if (divisorsCount > limit) {
+      totalPower += power;
+    } else {
+      totalPower += divisorsCount;
+    }
+  }
+
+  return totalPower;
+}
+
 // 약수의 개수와 덧셈(https://school.programmers.co.kr/learn/courses/30/lessons/77884)
 // 제곱근이 정수면 약수의 개수가 홀수다
 
