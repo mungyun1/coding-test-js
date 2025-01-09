@@ -35,10 +35,63 @@ function bfsMaze(N, M, graph) {
   return graph[N - 1][M - 1];
 }
 
-// 입력 처리
-const fs = require("fs");
-const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
-const [N, M] = input[0].split(" ").map(Number);
-const graph = input.slice(1).map((line) => line.split("").map(Number));
+//단지 번호 붙이기(https://www.acmicpc.net/problem/2667)
 
-console.log(bfsMaze(N, M, graph));
+const fs = require("fs");
+const input = fs.readFileSync("/dev/stdin").toString().split("\n");
+
+const N = parseInt(input[0]);
+const map = input.slice(1).map((line) => line.split("").map(Number));
+
+const directions = [
+  [-1, 0],
+  [1, 0],
+  [0, -1],
+  [0, 1],
+];
+const visited = Array.from({ length: N }, () => Array(N).fill(false));
+const results = [];
+
+function bfs(x, y) {
+  const queue = [[x, y]];
+  visited[x][y] = true;
+  let count = 1;
+
+  while (queue.length > 0) {
+    const [cx, cy] = queue.shift();
+
+    for (let [dx, dy] of directions) {
+      const nx = cx + dx;
+      const ny = cy + dy;
+
+      if (
+        nx >= 0 &&
+        nx < N &&
+        ny >= 0 &&
+        ny < N &&
+        map[nx][ny] === 1 &&
+        !visited[nx][ny]
+      ) {
+        visited[nx][ny] = true;
+        queue.push([nx, ny]);
+        count++;
+      }
+    }
+  }
+
+  return count;
+}
+
+for (let i = 0; i < N; i++) {
+  for (let j = 0; j < N; j++) {
+    if (map[i][j] === 1 && !visited[i][j]) {
+      const count = bfs(i, j);
+      results.push(count);
+    }
+  }
+}
+
+results.sort((a, b) => a - b);
+
+console.log(results.length);
+results.forEach((count) => console.log(count));
