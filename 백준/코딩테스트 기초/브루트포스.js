@@ -1,12 +1,20 @@
-//const sum = (n * (n + 1)) / 2;
+//부분수열의 합(https://www.acmicpc.net/problem/1182)
 
-console.log(10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1);
-console.log(9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1);
-console.log(8 + 7 + 6 + 5 + 4 + 3 + 2 + 1);
-console.log(7 + 6 + 5 + 4 + 3 + 2 + 1);
-console.log(6 + 5 + 4 + 3 + 2 + 1);
-console.log(5 + 4 + 3 + 2 + 1);
-console.log(4 + 3 + 2 + 1);
-console.log(3 + 2 + 1);
-console.log(2 + 1);
-console.log(1);
+let count = 0;
+
+function findSubsetSum(arr, index, currentSum, S) {
+  if (index === arr.length) {
+    if (currentSum === S) {
+      count++;
+    }
+    return;
+  }
+
+  // 현재 원소를 포함하지 않는 경우
+  findSubsetSum(arr, index + 1, currentSum, S);
+
+  // 현재 원소를 포함하는 경우
+  findSubsetSum(arr, index + 1, currentSum + arr[index], S);
+}
+
+findSubsetSum(arr, 0, 0, S);
