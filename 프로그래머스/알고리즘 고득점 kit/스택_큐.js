@@ -40,3 +40,22 @@ function solution1(queue1, queue2) {
 
   return -1; // 목표 합을 만들 수 없는 경우
 }
+
+//프로세스(https://school.programmers.co.kr/learn/courses/30/lessons/42587?language=javascript)
+function solution(priorities, location) {
+  let queue = priorities.map((priority, index) => ({ priority, index }));
+  let executionOrder = 0;
+
+  while (queue.length > 0) {
+    let current = queue.shift();
+
+    if (queue.some((task) => task.priority > current.priority)) {
+      queue.push(current);
+    } else {
+      executionOrder++;
+      if (current.index === location) {
+        return executionOrder;
+      }
+    }
+  }
+}
