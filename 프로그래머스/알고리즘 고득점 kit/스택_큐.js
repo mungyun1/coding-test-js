@@ -1,3 +1,53 @@
+//기능개발(https://school.programmers.co.kr/learn/courses/30/lessons/42586)
+
+function solution(progresses, speeds) {
+  let answer = [];
+  let days = progresses.map((progress, index) =>
+    Math.ceil((100 - progress) / speeds[index])
+  ); // 각 작업이 완료되는 일수 계산
+  let maxDay = days[0]; // 현재까지 배포 가능한 기준일
+  let count = 0; // 배포할 기능 개수
+
+  for (let day of days) {
+    if (day <= maxDay) {
+      count++; // 현재 기준일 내에서 배포 가능
+    } else {
+      answer.push(count); // 이전까지의 기능 배포 개수 저장
+      count = 1; // 새로운 기준일 시작
+      maxDay = day; // 기준 변경
+    }
+  }
+
+  answer.push(count); // 마지막 배포 추가
+  return answer;
+}
+
+// 햄버거 만들기(https://school.programmers.co.kr/learn/courses/30/lessons/133502)
+
+function solution(ingredient) {
+  let stack = [];
+  let count = 0;
+
+  for (let item of ingredient) {
+    stack.push(item); // 스택에 재료 추가
+
+    // 스택의 마지막 4개가 [1,2,3,1]인지 확인
+    if (
+      stack.length >= 4 &&
+      stack[stack.length - 4] === 1 &&
+      stack[stack.length - 3] === 2 &&
+      stack[stack.length - 2] === 3 &&
+      stack[stack.length - 1] === 1
+    ) {
+      // 햄버거 완성 -> 4개 재료 제거
+      stack.splice(-4);
+      count++;
+    }
+  }
+
+  return count;
+}
+
 //두 큐 합 같게 만들기(https://school.programmers.co.kr/learn/courses/30/lessons/118667)
 
 function solution1(queue1, queue2) {
@@ -49,6 +99,7 @@ function solution(priorities, location) {
   while (queue.length > 0) {
     let current = queue.shift();
 
+    // some() 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 적어도 하나라도 통과하는지 테스트
     if (queue.some((task) => task.priority > current.priority)) {
       queue.push(current);
     } else {

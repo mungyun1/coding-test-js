@@ -38,6 +38,7 @@ function solution(n, costs) {
 }
 
 // 구명 보트(https://school.programmers.co.kr/learn/courses/30/lessons/42885)
+// [70, 50, 80, 50], 100
 
 function solution1(people, limit) {
   // 사람들의 몸무게를 오름차순으로 정렬
@@ -65,6 +66,7 @@ function solution1(people, limit) {
 }
 
 // 큰 수 만들기(https://school.programmers.co.kr/learn/courses/30/lessons/42883)
+// "1924", 2
 
 function solution(number, k) {
   const stack = [];

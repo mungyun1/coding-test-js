@@ -1,3 +1,6 @@
+// 공원 산책(https://school.programmers.co.kr/learn/courses/30/lessons/172928)
+// 풀어보기
+
 // 숫자 변환하기(https://school.programmers.co.kr/learn/courses/30/lessons/154538)
 
 function solution(x, y, n) {

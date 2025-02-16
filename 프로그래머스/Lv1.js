@@ -1,3 +1,61 @@
+// 문자열 나누기(https://school.programmers.co.kr/learn/courses/30/lessons/140108)
+
+function solution(s) {
+  let count = 0; // 분해된 문자열 개수
+  let i = 0; // 현재 문자열의 시작 인덱스
+
+  while (i < s.length) {
+    let x = s[i]; // 첫 번째 문자
+    let countX = 0,
+      countOther = 0; // x의 개수와 x가 아닌 문자 개수
+    let j = i;
+
+    while (j < s.length) {
+      if (s[j] === x) countX++;
+      else countOther++;
+
+      j++;
+
+      if (countX === countOther) break; // 개수가 같아지는 순간 종료
+    }
+
+    count++; // 분해된 문자열 개수 증가
+    i = j; // 다음 부분 문자열 시작 위치 설정
+  }
+
+  return count;
+}
+
+// 달리기 경주(https://school.programmers.co.kr/learn/courses/30/lessons/178871)
+
+// Map은 key는 유일하지만, value는 중복될 수 있음.(Set은 둘다 중복X)
+function solution(players, callings) {
+  let playerMap = new Map();
+
+  // 초기 선수들의 위치를 맵에 저장
+  players.forEach((player, index) => {
+    playerMap.set(player, index);
+  });
+
+  // callings에 따라 순위 변경
+  for (let name of callings) {
+    let idx = playerMap.get(name);
+    if (idx > 0) {
+      let prevName = players[idx - 1];
+
+      // 선수 위치 변경
+      players[idx - 1] = name;
+      players[idx] = prevName;
+
+      // 맵 업데이트
+      playerMap.set(name, idx - 1);
+      playerMap.set(prevName, idx);
+    }
+  }
+
+  return players;
+}
+
 // 기사단원의 무기(https://school.programmers.co.kr/learn/courses/30/lessons/136798)
 
 function solution(number, limit, power) {
