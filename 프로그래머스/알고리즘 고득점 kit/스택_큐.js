@@ -92,8 +92,12 @@ function solution1(queue1, queue2) {
 }
 
 //프로세스(https://school.programmers.co.kr/learn/courses/30/lessons/42587?language=javascript)
+// [2, 1, 3, 2], 2
+
 function solution(priorities, location) {
   let queue = priorities.map((priority, index) => ({ priority, index }));
+  // 	[{ priority: 2, index: 0 }, { priority: 1, index: 1 }...]
+
   let executionOrder = 0;
 
   while (queue.length > 0) {

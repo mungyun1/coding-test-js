@@ -27,6 +27,8 @@ function solution(s) {
 }
 
 // 달리기 경주(https://school.programmers.co.kr/learn/courses/30/lessons/178871)
+// ["mumu", "soe", "poe", "kai", "mine"], ["kai", "kai", "mine", "mine"]
+// return: ["mumu", "kai", "mine", "soe", "poe"]
 
 // Map은 key는 유일하지만, value는 중복될 수 있음.(Set은 둘다 중복X)
 function solution(players, callings) {

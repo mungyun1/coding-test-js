@@ -1,27 +1,17 @@
-//
+// 짝지어 제거하기(https://school.programmers.co.kr/learn/courses/30/lessons/12973)
 
-function solution(weights) {
-  let count = 0;
-  const map = new Map();
+function solution(s) {
+  const stack = [];
 
-  // 각 몸무게에 대해 2m, 3m, 4m 위치에 따라 계산
-  for (let w of weights) {
-    for (let distance of [2, 3, 4]) {
-      const torque = w * distance;
-      if (map.has(torque)) {
-        count += map.get(torque);
-      }
-      // 맵에 torque 값이 있으면 그만큼 짝을 찾을 수 있음
-    }
-
-    // 새로운 몸무게 추가
-    for (let distance of [2, 3, 4]) {
-      const torque = w * distance;
-      map.set(torque, (map.get(torque) || 0) + 1);
+  for (const char of s) {
+    if (stack.length > 0 && stack[stack.length - 1] === char) {
+      stack.pop(); // 짝이 맞으면 제거
+    } else {
+      stack.push(char); // 짝이 아니면 추가
     }
   }
 
-  return count;
+  return stack.length === 0 ? 1 : 0;
 }
 
 // 124나라의 숫자(https://school.programmers.co.kr/learn/courses/30/lessons/12899)

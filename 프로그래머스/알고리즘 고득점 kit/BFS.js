@@ -60,6 +60,7 @@ const graph = {
 bfs(graph, 1);
 
 // 네트워크(https://school.programmers.co.kr/learn/courses/30/lessons/43162)
+// 3, [[1, 1, 0], [1, 1, 0], [0, 0, 1]]
 
 function solution(n, computers) {
   let answer = 0;
@@ -101,7 +102,7 @@ function solution(maps) {
 
   while (q.length) {
     let [x, y] = q.shift();
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < 4; i++) {
       let nx = x + dx[i];
       let ny = y + dy[i];
 
