@@ -1,15 +1,23 @@
-function solution(s) {
-  const s = s.split("");
-  const stack = [];
+function solution(N, stages) {
+  var answer = [];
+  var len = stages.length;
+  var graph = {};
 
-  while (s.length > 0) {
-    const curr = s.shift();
-    if (stack.length > 0 && curr === stack[stack.length - 1]) {
-      stack.pop();
-    } else {
-      stack.push(curr);
-    }
+  for (let i = 0; i < stages.length; i++) {
+    if (stages[i] > N) continue;
+    if (!graph[stages[i]]) graph[stages[i]] = 0;
+    graph[stages[i]]++;
   }
 
-  return stack.length !== 0 ? 1 : 0;
+  for (let i = 0; i < N; i++) {
+    if (!graph[i + 1]) graph[i + 1] = 0;
+  }
+
+  let tempLen = stages.length;
+  Object.keys(graph).forEach((key, index) => {
+    answer.push([index + 1, graph[key] / tempLen]);
+    tempLen -= graph[key];
+  });
+
+  return answer;
 }

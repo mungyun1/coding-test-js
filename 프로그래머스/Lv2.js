@@ -1,3 +1,52 @@
+// 공원 산책(https://school.programmers.co.kr/learn/courses/30/lessons/172928?language=javascript)
+
+function solution(park, routes) {
+  let position = []; // 현재 위치 저장
+  const direction = { N: [-1, 0], S: [1, 0], E: [0, 1], W: [0, -1] };
+
+  // 시작점(S) 찾기
+  for (let i = 0; i < park.length; i++) {
+    for (let j = 0; j < park[0].length; j++) {
+      if (park[i][j] === "S") {
+        position = [i, j];
+        break;
+      }
+    }
+  }
+
+  // 이동 실행
+  for (let route of routes) {
+    const [a, b] = route.split(" ");
+    const steps = parseInt(b); // 이동 거리 숫자로 변환
+    let [x, y] = position;
+    let validMove = true;
+
+    for (let i = 1; i <= steps; i++) {
+      let nx = x + direction[a][0] * i;
+      let ny = y + direction[a][1] * i;
+
+      // 범위 벗어나거나 장애물('X')이면 이동 불가
+      if (
+        nx < 0 ||
+        ny < 0 ||
+        nx >= park.length ||
+        ny >= park[0].length ||
+        park[nx][ny] === "X"
+      ) {
+        validMove = false;
+        break;
+      }
+    }
+
+    // 이동이 가능하면 최종 좌표 업데이트
+    if (validMove) {
+      position = [x + direction[a][0] * steps, y + direction[a][1] * steps];
+    }
+  }
+
+  return position;
+}
+
 // 짝지어 제거하기(https://school.programmers.co.kr/learn/courses/30/lessons/12973)
 
 function solution(s) {
