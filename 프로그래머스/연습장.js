@@ -1,23 +1,23 @@
-function solution(N, stages) {
-  var answer = [];
-  var len = stages.length;
-  var graph = {};
+function solution(n, lost, reserve) {
+  let realLost = lost.filter((student) => !reserve.includes(student));
+  let realReserve = reserve.filter((student) => !lost.includes(student));
 
-  for (let i = 0; i < stages.length; i++) {
-    if (stages[i] > N) continue;
-    if (!graph[stages[i]]) graph[stages[i]] = 0;
-    graph[stages[i]]++;
+  realLost.sort((a, b) => a - b);
+  realReserve.sort((a, b) => a - b);
+
+  let answer = n - realLost.length;
+
+  for (let i = 0; i < realLost.length; i++) {
+    let curr = realLost[i];
+    let idx = realReserve.findIndex(
+      (student) => student === curr - 1 || student === curr + 1
+    );
+
+    if (idx !== -1) {
+      answer++;
+      realReserve.splice(idx, 1);
+    }
   }
-
-  for (let i = 0; i < N; i++) {
-    if (!graph[i + 1]) graph[i + 1] = 0;
-  }
-
-  let tempLen = stages.length;
-  Object.keys(graph).forEach((key, index) => {
-    answer.push([index + 1, graph[key] / tempLen]);
-    tempLen -= graph[key];
-  });
 
   return answer;
 }
