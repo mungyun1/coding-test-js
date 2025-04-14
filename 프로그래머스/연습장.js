@@ -1,23 +1,24 @@
-function solution(n, lost, reserve) {
-  let realLost = lost.filter((student) => !reserve.includes(student));
-  let realReserve = reserve.filter((student) => !lost.includes(student));
+function solution(a, b, n) {
+  var answer = 0;
+  var remain = 0;
 
-  realLost.sort((a, b) => a - b);
-  realReserve.sort((a, b) => a - b);
+  while (n !== 0) {
+    let num1 = parseInt(n / a);
+    let num2 = n % a;
 
-  let answer = n - realLost.length;
+    answer += num1;
 
-  for (let i = 0; i < realLost.length; i++) {
-    let curr = realLost[i];
-    let idx = realReserve.findIndex(
-      (student) => student === curr - 1 || student === curr + 1
-    );
-
-    if (idx !== -1) {
-      answer++;
-      realReserve.splice(idx, 1);
+    if (num2 !== 0) {
+      remain += num2;
     }
-  }
 
+    if (n < a) {
+      if (num2 + n >= a) {
+        answer += (num2 + n) / a;
+      }
+    }
+
+    n == parseInt(n / a);
+  }
   return answer;
 }

@@ -1,3 +1,33 @@
+// N과 M(1)(https://www.acmicpc.net/problem/15649) - 백트래킹
+
+function solution(N, M) {
+  const result = [];
+  const visited = Array(N + 1).fill(false);
+  const current = [];
+
+  function backtrack() {
+    if (current.length === M) {
+      result.push(current.join(" "));
+      return;
+    }
+
+    for (let i = 1; i <= N; i++) {
+      if (!visited[i]) {
+        visited[i] = true;
+        current.push(i);
+        backtrack();
+        current.pop();
+        visited[i] = false;
+      }
+    }
+  }
+
+  backtrack();
+  console.log(result.join("\n"));
+}
+
+solution(N, M);
+
 // 수 이어쓰기1(https://www.acmicpc.net/problem/1748)
 
 function solution(n) {

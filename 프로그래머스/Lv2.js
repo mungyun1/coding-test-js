@@ -1,3 +1,59 @@
+// 택배상자(https://school.programmers.co.kr/learn/courses/30/lessons/131704)
+
+function solution(order) {
+  let answer = 0;
+  const stack = [];
+  let current = 1;
+
+  for (let i = 0; i < order.length; i++) {
+    const target = order[i];
+
+    // 현재 상자가 아직 오지 않았다면 도착할 때까지 계속 push
+    while (current <= order.length && current < target) {
+      stack.push(current++);
+    }
+
+    if (current === target) {
+      // 바로 트럭에 실을 수 있는 경우
+      current++;
+      answer++;
+    } else if (stack[stack.length - 1] === target) {
+      // 보조 컨베이어 벨트에서 실을 수 있는 경우
+      stack.pop();
+      answer++;
+    } else {
+      // 실을 수 없음
+      break;
+    }
+  }
+
+  return answer;
+}
+
+// 영어 끝말잇기(https://school.programmers.co.kr/learn/courses/30/lessons/12981)
+
+function solution(n, words) {
+  const used = new Set();
+  used.add(words[0]);
+
+  for (let i = 1; i < words.length; i++) {
+    const prev = words[i - 1];
+    const curr = words[i];
+
+    const isWrong = curr[0] !== prev[prev.length - 1] || used.has(curr);
+
+    if (isWrong) {
+      const player = (i % n) + 1; // 사람 번호
+      const turn = Math.floor(i / n) + 1; // 차례
+      return [player, turn];
+    }
+
+    used.add(curr);
+  }
+
+  return [0, 0]; // 탈락자가 없는 경우
+}
+
 // 공원 산책(https://school.programmers.co.kr/learn/courses/30/lessons/172928?language=javascript)
 
 function solution(park, routes) {
