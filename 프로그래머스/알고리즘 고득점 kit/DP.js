@@ -1,5 +1,7 @@
+// 등굣길(https://school.programmers.co.kr/learn/courses/30/lessons/42898)
+
 function solution(m, n, puddles) {
-  const MOD = 1_000_000_007;
+  const MOD = 1_000000007;
 
   const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
   const isPuddle = Array.from({ length: n + 1 }, () =>

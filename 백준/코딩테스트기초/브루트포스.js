@@ -1,3 +1,55 @@
+//부분수열의 합(https://www.acmicpc.net/problem/14225) - 맞췄지만 다시보기
+
+function solution(N, S) {
+  S.sort((a, b) => a - b);
+  const numbers = new Set();
+
+  function dfs(index, sum) {
+    if (index > N) return;
+    numbers.add(sum);
+
+    dfs(index + 1, sum + S[index]);
+    dfs(index + 1, sum);
+  }
+  dfs(0, 0);
+
+  answer = 1;
+  while (true) {
+    if (!numbers.has(answer)) {
+      console.log(answer);
+      break;
+    }
+    answer++;
+  }
+}
+
+// 부분수열의 합(https://www.acmicpc.net/problem/1182)
+
+function solution(N, S, numbers) {
+  let count = 0;
+
+  function dfs(index, sum) {
+    if (index === N) {
+      // 공집합은 제외
+      if (sum === S) count++;
+      return;
+    }
+
+    // 현재 인덱스의 숫자를 포함하는 경우
+    dfs(index + 1, sum + numbers[index]);
+    // 현재 인덱스의 숫자를 포함하지 않는 경우
+    dfs(index + 1, sum);
+  }
+
+  dfs(0, 0);
+
+  // 문제 조건: 크기가 양수인 부분수열만 허용하므로
+  // 합이 0이고 모든 숫자를 포함하지 않은 경우 (공집합) 제거
+  if (S === 0) count--;
+
+  return count;
+}
+
 // N과 M(1)(https://www.acmicpc.net/problem/15649) - 백트래킹
 
 function solution(N, M) {

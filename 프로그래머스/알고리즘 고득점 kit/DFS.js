@@ -1,3 +1,36 @@
+// 단어 변환(https://school.programmers.co.kr/learn/courses/30/lessons/43163)
+// "hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]
+
+function solution(begin, target, words) {
+  if (!words.includes(target)) return 0;
+
+  const isConvertible = (word1, word2) => {
+    let diff = 0;
+    for (let i = 0; i < word1.length; i++) {
+      if (word1[i] !== word2[i]) diff++;
+    }
+    return diff === 1;
+  };
+
+  const visited = new Set();
+  const queue = [[begin, 0]];
+
+  while (queue.length > 0) {
+    const [current, steps] = queue.shift();
+
+    if (current === target) return steps;
+
+    for (let word of words) {
+      if (!visited.has(word) && isConvertible(current, word)) {
+        visited.add(word);
+        queue.push([word, steps + 1]);
+      }
+    }
+  }
+
+  return 0;
+}
+
 // 여행 경로(https://school.programmers.co.kr/learn/courses/30/lessons/43164)
 function solution(tickets) {
   // tickets: [["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]

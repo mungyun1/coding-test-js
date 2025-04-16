@@ -1,4 +1,5 @@
 // 택배상자(https://school.programmers.co.kr/learn/courses/30/lessons/131704)
+// [4,3,1,2,5]
 
 function solution(order) {
   let answer = 0;

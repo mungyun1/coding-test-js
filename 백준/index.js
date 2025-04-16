@@ -1,32 +1,22 @@
-const fs = require("fs");
-const input = fs.readFileSync("./input.txt").toString().split(" ").map(Number);
+function solution(N, S) {
+  S.sort((a, b) => a - b);
+  const numbers = new Set();
 
-const [N, M] = input;
+  function dfs(index, sum) {
+    if (index > N) return;
+    numbers.add(sum);
 
-function solution(N, K) {
-  const MAX = 100000;
-  const visited = Array(MAX + 1).fill(false);
-  const queue = [];
+    dfs(index + 1, sum + S[index]);
+    dfs(index + 1, sum);
+  }
+  dfs(0, 0);
 
-  queue.push({ pos: N, time: 0 });
-  visited[N] = true;
-
-  while (queue.length > 0) {
-    const { pos, time } = queue.shift();
-
-    if (pos === K) {
-      return time;
+  answer = 1;
+  while (true) {
+    if (!numbers.has(answer)) {
+      console.log(answer);
+      break;
     }
-
-    const nextPositions = [pos - 1, pos + 1, pos * 2];
-
-    for (const next of nextPositions) {
-      if (next >= 0 && next <= MAX && !visited[next]) {
-        visited[next] = true;
-        queue.push({ pos: next, time: time + 1 });
-      }
-    }
+    answer++;
   }
 }
-
-console.log(solution(N, M));
