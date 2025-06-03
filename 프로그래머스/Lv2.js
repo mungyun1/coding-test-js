@@ -1,3 +1,68 @@
+// 다트게임(https://school.programmers.co.kr/learn/courses/30/lessons/17682)
+
+function solution(dartResult) {
+  const scores = []; // 각 기회의 점수를 저장할 배열
+  let i = 0;
+
+  while (i < dartResult.length) {
+    let score = 0;
+
+    // 점수 처리 (10도 고려)
+    if (dartResult[i] === "1" && dartResult[i + 1] === "0") {
+      score = 10;
+      i += 2;
+    } else {
+      score = parseInt(dartResult[i]);
+      i++;
+    }
+
+    // 보너스 처리
+    const bonus = dartResult[i];
+    if (bonus === "S") score = Math.pow(score, 1);
+    else if (bonus === "D") score = Math.pow(score, 2);
+    else if (bonus === "T") score = Math.pow(score, 3);
+    i++;
+
+    // 옵션 처리 (옵션이 없을 수도 있음)
+    if (dartResult[i] === "*" || dartResult[i] === "#") {
+      const option = dartResult[i];
+
+      if (option === "*") {
+        score *= 2;
+        // 이전 점수도 2배 처리
+        if (scores.length > 0) {
+          scores[scores.length - 1] *= 2;
+        }
+      } else if (option === "#") {
+        score *= -1;
+      }
+      i++;
+    }
+
+    scores.push(score); // 계산된 점수 저장
+  }
+
+  // 점수 총합 반환
+  return scores.reduce((acc, val) => acc + val, 0);
+}
+
+// 점프이동(https://school.programmers.co.kr/learn/courses/30/lessons/12980)
+
+function solution(n) {
+  let battery = 0;
+
+  while (n > 0) {
+    if (n % 2 === 0) {
+      n = n / 2;
+    } else {
+      n -= 1;
+      battery += 1;
+    }
+  }
+
+  return battery;
+}
+
 // 택배상자(https://school.programmers.co.kr/learn/courses/30/lessons/131704)
 // [4,3,1,2,5]
 

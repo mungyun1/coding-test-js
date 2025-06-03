@@ -1,4 +1,4 @@
-// 가장 먼 노드(https://school.programmers.co.kr/learn/courses/30/lessons/49189)
+// 가장 먼 노드(https://school.programmers.co .kr/learn/courses/30/lessons/49189)
 
 function solution1(n, vertex) {
   // 그래프 초기화 (인접 리스트 방식)
