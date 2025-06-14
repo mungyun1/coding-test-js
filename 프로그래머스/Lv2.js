@@ -1,3 +1,37 @@
+// 괄호 회전하기(https://school.programmers.co.kr/learn/courses/30/lessons/76502)
+function solution(s) {
+  const isValid = (str) => {
+    const stack = [];
+    const pairs = { ")": "(", "]": "[", "}": "{" };
+
+    for (let ch of str) {
+      if (ch === "(" || ch === "[" || ch === "{") {
+        stack.push(ch);
+      } else {
+        if (stack.length === 0 || stack[stack.length - 1] !== pairs[ch]) {
+          return false;
+        }
+        stack.pop();
+      }
+    }
+
+    return stack.length === 0;
+  };
+
+  let count = 0;
+  let rotated = s;
+
+  for (let i = 0; i < s.length; i++) {
+    if (isValid(rotated)) {
+      count++;
+    }
+    // 왼쪽으로 한 칸 회전
+    rotated = rotated.slice(1) + rotated[0];
+  }
+
+  return count;
+}
+
 // 다트게임(https://school.programmers.co.kr/learn/courses/30/lessons/17682)
 
 function solution(dartResult) {

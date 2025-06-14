@@ -1,3 +1,33 @@
+function solution(N, A) {
+  const dp = Array(N).fill(0);
+
+  for (let i = 0; i < N; i++) {
+    dp[i] = A[i]; // 자기 자신을 포함한 수열 합으로 초기화
+    for (let j = 0; j < i; j++) {
+      if (A[j] < A[i]) {
+        dp[i] = Math.max(dp[i], dp[j] + A[i]);
+      }
+    }
+  }
+
+  return Math.max(...dp);
+}
+
+// 제곱수의 합(https://www.acmicpc.net/problem/1699)
+
+function solution(N) {
+  const dp = Array(N + 1).fill(Infinity);
+  dp[0] = 0;
+
+  for (let i = 1; i <= N; i++) {
+    for (let j = 1; j * j <= i; j++) {
+      dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
+    }
+  }
+
+  return dp[N];
+}
+
 //쉬운 계단 수(https://www.acmicpc.net/problem/10844)
 
 function solution(N) {
